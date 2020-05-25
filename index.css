@@ -1,0 +1,61 @@
+body {
+  width: 1000px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+#library {
+  border-bottom-style: solid;
+  background-color: tan;
+  border-color: brown;
+  border-width: 5px;
+  padding: 10px;
+  text-align: center;
+}
+
+td {
+  width: 100px;
+  height: 200px;
+}
+.book-display {
+  color: brown;
+  width: inherit;
+  height: inherit;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: lightblue;
+  text-align: center;
+  margin: 0 auto;
+  padding: 3px;
+
+}
+
+#library button {
+  width: 100px;
+  height: 20px;
+  margin-top: 4px;
+}
+
+#new-book-button {
+  text-align: center;
+  margin: 5px;
+}
+
+#new-book-form {
+  border: 1px solid black;
+  border-radius: 10px;
+  height: min-content;
+  width: min-content;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: lightblue;
+}
+
+#new-book-form h2 {
+  text-align: center;
+}
+
+#new-book-form input {
+  margin-top: 2px;
+  display: block;
+}
