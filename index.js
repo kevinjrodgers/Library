@@ -22,7 +22,7 @@ function Book(title, author, pages, hasBeenRead) {
   this.pages = pages;
   this.hasBeenRead = hasBeenRead;
   this.info = function() {
-    return title + " by " + author + ", " + pages + " pages, " + hasBeenRead;
+    return this.title + " by " + this.author + ", " + this.pages + " pages, " + this.hasBeenRead;
   }
 
 }
@@ -31,11 +31,11 @@ function addBookToLibrary() {
   //get user input on the title, author, pages, and hasBeenRead
   //store info into a Book object
   //add Book object into myLibrary
-  var title = window.prompt("Enter title.");
-  var author = window.prompt("Enter author's name.");
-  var pages = window.prompt("Enter number of pages the book contains.");
-  var hasBeenReadYN = window.prompt("Has this book been read? Y/N");
-  var index = myLibrary.length;
+  let title = window.prompt("Enter title.");
+  let author = window.prompt("Enter author's name.");
+  let pages = window.prompt("Enter number of pages the book contains.");
+  let hasBeenReadYN = window.prompt("Has this book been read? Y/N");
+  let index = myLibrary.length;
   if(hasBeenReadYN == "Y") {
     hasBeenRead = "Has Been Read";
   }
@@ -52,18 +52,18 @@ function render() {
 
   let library = document.getElementById("library");
   library.innerHTML = "";
-
+  //Add the Add Book button
   //Cycle through myLibrary and load Books onto page
   for(let bookNum = 0; bookNum < myLibrary.length; bookNum++) {
 
-    var newBookData = document.createElement("div");
-    var bookText = document.createElement("p");
-    var readToggleButton = document.createElement("button");
-    var deleteButton = document.createElement("button");
-    var textDetails = document.createTextNode(myLibrary[bookNum].info());
-    var redAttribute = Math.floor(Math.random() * 256) + 20;
-    var greenAttribute = Math.floor(Math.random() * 256) + 20;
-    var blueAttribute = Math.floor(Math.random() * 256) + 20;
+    let newBookData = document.createElement("div");
+    let bookText = document.createElement("p");
+    let readToggleButton = document.createElement("button");
+    let deleteButton = document.createElement("button");
+    let textDetails = document.createTextNode(myLibrary[bookNum].info());
+    let redAttribute = Math.floor(Math.random() * 256) + 20;
+    let greenAttribute = Math.floor(Math.random() * 256) + 20;
+    let blueAttribute = Math.floor(Math.random() * 256) + 20;
 
     //Set the data-attribute for the book
     newBookData.dataset.index = bookNum;
@@ -73,19 +73,20 @@ function render() {
     deleteButton.innerHTML = "Delete";
     deleteButton.className = "delete";
     readToggleButton.addEventListener("click", function(e) {
-      var bookIndex = e.target.parentElement.getAttribute("data-index");
+      let bookIndex = e.target.parentElement.getAttribute("data-index");
       //toggleRead(bookIndex);
       if(myLibrary[bookIndex].hasBeenRead == "Not Read Yet") {
         myLibrary[bookIndex].hasBeenRead = "Has Been Read";
-      } else {
-        myLibrary[bookIndex].hasBeenRead = "Has Been Read";
+        e.target.parentElement.childNodes[1].innerHTML = myLibrary[bookIndex].info();
       }
-      e.target.parentElement.childNodes[1].innerHTML = "";
-      e.target.parentElement.childNodes[1].innerHTML = myLibrary[bookIndex].info();
+      else if(myLibrary[bookIndex].hasBeenRead == "Has Been Read") {
+        myLibrary[bookIndex].hasBeenRead = "Not Read Yet";
+        e.target.parentElement.childNodes[1].innerHTML = myLibrary[bookIndex].info();
+      }
     });
 
     deleteButton.addEventListener("click", function(e) {
-      var bookIndex = e.target.parentElement.getAttribute("data-index");
+      let bookIndex = e.target.parentElement.getAttribute("data-index");
       removeBook(bookIndex);
     });
 
