@@ -1,30 +1,21 @@
-<!DOCTYPE html />
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
+    <meta charset="utf-8"/>
     <link type="text/css" rel="stylesheet" href="index.css"/>
   </head>
 
   <body onload="render();">
-    <table id="library">
-
-    </table>
-    <div id="new-book-button">
-      <button >Add New Book</button>
+    <div id="author-bar">
+        <h1>Library</h1>
+        <h2>Created by Kevin Rodgers</h2>
     </div>
-    <form id="new-book-form">
-      <h2>New Book</h2>
-      <label for="title">Title:</label><br>
-      <input type="text" id="title-input" name="title"><br>
-      <label for="author">Author:</label><br>
-      <input type="text" id="author-input" name="author"><br>
-      <label for="pages">Number of Pages:</label><br>
-      <input type="text" id="pages-input" name="pages"><br>
-      
-      <input type="radio" id="not-read-radio" name="isRead" value="Not Read Yet">
-      <label for="isRead">Not Read Yet</label>
-      <input type="radio" id="was-read-radio" name="isRead" value="Read">
-      <label for="was-read-radio">Read</label>
-    </form>
+      <div id="side-bar">
+          <p>&nbsp;</p>
+      </div>
+      <div id="library">
+
+      </div>
   </body>
   <script type="text/javascript" src="index.js"></script>
 </html>
