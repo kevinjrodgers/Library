@@ -36,15 +36,20 @@ function addBookToLibrary() {
   let pages = window.prompt("Enter number of pages the book contains.");
   let hasBeenReadYN = window.prompt("Has this book been read? Y/N");
   let index = myLibrary.length;
-  if(hasBeenReadYN == "Y") {
-    hasBeenRead = "Has Been Read";
+  if(title == null || author == null || pages == null || hasBeenReadYN == null) {
+    alert("Error.");
   }
   else {
-    hasBeenRead = "Not Read Yet";
+    if(hasBeenReadYN == "Y") {
+      hasBeenRead = "Has Been Read";
+    }
+    else {
+      hasBeenRead = "Not Read Yet";
+    }
+    let newBook = new Book(title, author, pages, hasBeenRead, index);
+    myLibrary.push(newBook);
+    render();
   }
-  let newBook = new Book(title, author, pages, hasBeenRead, index);
-  myLibrary.push(newBook);
-
 }
 
 function render() {
@@ -53,7 +58,23 @@ function render() {
   let library = document.getElementById("library");
   library.innerHTML = "";
   //Add the Add Book button
+  let addBookButton = document.createElement("div");
+  let addButtonLink = document.createElement("a");
+  let addButtonParagraph = document.createElement("p");
+  let addButtonTextNode = document.createTextNode("+");
+  addBookButton.addEventListener("click", function() {
+    addBookToLibrary();
+  })
+
+  //Create the Add Book div
+  addButtonParagraph.appendChild(addButtonTextNode);
+  addButtonLink.appendChild(addButtonParagraph);
+  addBookButton.appendChild(addButtonLink);
+  addBookButton.setAttribute("id", "add-book");
+
   //Cycle through myLibrary and load Books onto page
+
+  library.appendChild(addBookButton);
   for(let bookNum = 0; bookNum < myLibrary.length; bookNum++) {
 
     let newBookData = document.createElement("div");
@@ -61,16 +82,16 @@ function render() {
     let readToggleButton = document.createElement("button");
     let deleteButton = document.createElement("button");
     let textDetails = document.createTextNode(myLibrary[bookNum].info());
-    let redAttribute = Math.floor(Math.random() * 256) + 20;
-    let greenAttribute = Math.floor(Math.random() * 256) + 20;
-    let blueAttribute = Math.floor(Math.random() * 256) + 20;
+    let redAttribute = Math.floor(Math.random() * 256) + 40;
+    let greenAttribute = Math.floor(Math.random() * 256) + 40;
+    let blueAttribute = Math.floor(Math.random() * 256) + 40;
 
     //Set the data-attribute for the book
     newBookData.dataset.index = bookNum;
 
-    readToggleButton.innerHTML = "Toggle Read";
+    readToggleButton.innerHTML = "";
     readToggleButton.className = "toggle";
-    deleteButton.innerHTML = "Delete";
+    deleteButton.innerHTML = "";
     deleteButton.className = "delete";
     readToggleButton.addEventListener("click", function(e) {
       let bookIndex = e.target.parentElement.getAttribute("data-index");
